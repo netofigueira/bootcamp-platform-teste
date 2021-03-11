@@ -1,21 +1,24 @@
-from data_lake.base import BaseDataLakeBucket, DataLakeLayer
+from data_platform.data_lake.base import BaseDataLakeBucket, DataLakeLayer
 from aws_cdk import core
-from aws_cdk import (aws_s3 as s3)
+from aws_cdk import (
+    aws_s3 as s3,
+)
+
 from data_platform import active_environment
 
 class DataLakeStack(core.Stack):
     def __init__(self, scope: core.Construct, **kwargs) -> None:
         self.deploy_env = active_environment
-        super().__init__(scope, id=f'{self.deploy_env.value)-data-lake-stack', **kwargs)
+        super().__init__(scope, id=f'{self.deploy_env.value}-data-lake-stack', **kwargs)
 
         self.data_lake_raw_bucket = BaseDataLakeBucket(
             self,
-            deploy_env = self.deploy_env,
+            deploy_env=self.deploy_env,
             layer=DataLakeLayer.RAW
-
         )
 
-       self.data_lake_raw_bucket.add_lifecycle_rule(
+
+        self.data_lake_raw_bucket.add_lifecycle_rule(
             transitions=[
                 s3.Transition(
                     storage_class=s3.StorageClass.INTELLIGENT_TIERING,
