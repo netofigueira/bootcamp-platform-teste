@@ -1,0 +1,7 @@
+README.md
+setup.py
+data_platform/data_platform.egg-info/PKG-INFO
+data_platform/data_platform.egg-info/SOURCES.txt
+data_platform/data_platform.egg-info/dependency_links.txt
+data_platform/data_platform.egg-info/requires.txt
+data_platform/data_platform.egg-info/top_level.txt
